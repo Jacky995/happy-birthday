@@ -5,24 +5,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Happy Birthday Celebration!</title>
   <style>
-    /* 基本樣式 */
-    body {
+    /* Reset & 基本樣式 */
+    * {
       margin: 0;
       padding: 0;
-      background: linear-gradient(135deg, #FFDEE9 0%, #B5FFFC 100%);
+      box-sizing: border-box;
+    }
+    body {
       font-family: 'Arial', sans-serif;
       color: #333;
       text-align: center;
+      background: linear-gradient(135deg, #FFDEE9 0%, #B5FFFC 100%);
+      line-height: 1.6;
     }
     header {
       padding: 50px 20px;
       background-color: rgba(255, 255, 255, 0.8);
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      margin-bottom: 30px;
     }
     header h1 {
       font-size: 3em;
-      margin: 0;
+      margin-bottom: 10px;
       animation: fadeInDown 2s ease;
+    }
+    header p {
+      font-size: 1.2em;
     }
     @keyframes fadeInDown {
       from {
@@ -36,7 +44,14 @@
     }
     section {
       padding: 40px 20px;
+      max-width: 1000px;
+      margin: 0 auto;
     }
+    h2 {
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+    /* 相片展示區 */
     .gallery {
       display: flex;
       flex-wrap: wrap;
@@ -47,12 +62,13 @@
       width: 300px;
       height: auto;
       border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
       transition: transform 0.3s ease;
     }
     .gallery img:hover {
       transform: scale(1.05);
     }
+    /* 影片容器 */
     .video-container {
       position: relative;
       padding-bottom: 56.25%; /* 16:9 aspect ratio */
@@ -61,7 +77,7 @@
       margin: 20px auto;
       max-width: 800px;
       border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
     .video-container iframe {
       position: absolute;
@@ -70,51 +86,53 @@
       width: 100%;
       height: 100%;
     }
+    /* 祝福文字區 */
     .message {
       font-size: 1.5em;
       padding: 20px;
-      background-color: rgba(255,255,255,0.9);
+      background-color: rgba(255, 255, 255, 0.9);
       margin: 20px auto;
       max-width: 800px;
       border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     }
     footer {
       padding: 20px;
       font-size: 0.9em;
       color: #555;
+      background: rgba(255,255,255,0.8);
+      box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
     }
   </style>
 </head>
 <body>
+  <!-- 頁首區塊 -->
   <header>
     <h1>Happy Birthday!</h1>
-    <p>願你今天充滿驚喜與歡笑！</p>
+    <p>願你今天充滿驚喜與歡笑，邁向新的一歲！</p>
   </header>
   
+  <!-- 相片展示區 -->
   <section id="gallery">
-    <h2>小美生日快樂</h2>
+    <h2>Photo Gallery</h2>
     <div class="gallery">
-      <!-- 這裡放置你的相片連結 -->
+      <!-- 替換下列圖片連結為你的實際相片 -->
       <img src="https://cdntwrunning.biji.co/800_247eb803238ce58c4408eb98de6a2ae4.jpg" alt="Photo 1">
       <img src="https://png.pngtree.com/thumb_back/fh260/background/20231106/pngtree-vibrant-twilight-abstract-texture-of-a-colorful-cloud-filled-sunset-sky-image_13740046.png" alt="Photo 2">
       <img src="data:image/jpeg;base64,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" alt="Photo 3">
     </div>
   </section>
   
+  <!-- 影片嵌入區 -->
   <section id="video">
     <h2>Video Surprise</h2>
     <div class="video-container">
-      <!-- 請替換以下的 src 為你的 YouTube 影片嵌入連結 -->
-      <div style="position: relative; width: 100%; height: 0; padding-top: 56.2500%;
- padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(81, 71, 63, 0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden;
- border-radius: 8px; will-change: transform;">
-  <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;"
-    src="https://www.canva.com/design/DAGinwFd91E/3VymNehtKyca1dMqZ6RyLw/watch?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
-  </iframe>
-
+      <!-- 替換下面 src 為你實際的 YouTube 嵌入連結 -->
+      <iframe src="https://www.canva.com/design/DAGinwFd91E/3VymNehtKyca1dMqZ6RyLw/watch?embed" title="祝你生日快樂歌（搞怪版）" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
   </section>
   
+  <!-- 祝福文字區 -->
   <section id="message">
     <h2>Your Message</h2>
     <div class="message">
@@ -126,17 +144,16 @@
     <p>&copy; 2025 Happy Birthday. All rights reserved.</p>
   </footer>
   
-  <!-- Canvas 用於顯示 confetti 動畫效果 -->
-  <canvas id="confetti-canvas" style="position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none;"></canvas>
+  <!-- Canvas 用於顯示 confetti 動畫效果，營造驚喜感 -->
+  <canvas id="confetti-canvas" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;"></canvas>
   
   <!-- 載入 canvas-confetti 庫 -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
   <script>
-    // 當頁面載入時觸發 confetti 動畫，營造驚喜效果
+    // 當頁面載入時觸發 confetti 動畫
     window.onload = function() {
-      var duration = 5 * 1000;
+      var duration = 5000; // 動畫持續 5 秒
       var end = Date.now() + duration;
-      
       (function frame() {
         confetti({
           particleCount: 3,
